@@ -4,6 +4,6 @@
         "@babel/react"
     ],
     "plugins": [
-        "babel/runtime"
+        "@babel/transform-runtime"
     ]
 }

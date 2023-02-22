@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const Appointment = () => {
+export const Appointment = ({ customer }) => {
     return (
-        <div>Ashley</div>
+        <div>{customer.firstName}</div>
     )
 }

@@ -7,9 +7,6 @@ const appointmentTimeOfDay = (startsAt) => {
 };
 
 export const Appointment = ({ customer, service, notes, startsAt }) => {
-  console.log("logged: ", customer);
-  console.log("logged: ", service);
-
   return (
     <div>
       <div id="appointmentView">

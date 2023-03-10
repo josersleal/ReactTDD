@@ -182,7 +182,6 @@ describe("AppointmentsDayView", () => {
     render(componentADV2A);
     expect(document.body.textContent).toContain("Ashtley");
   });
-
   it("has a button element in each li", () => {
     render(componentADV2A);
 

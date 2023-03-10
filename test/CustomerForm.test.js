@@ -4,9 +4,11 @@ import {
   render,
   element,
   form,
-  field,
+  fieldOnForm,
   click,
   submit,
+  submitButton,
+  change,
 } from "./reactTestExtensions";
 import { toContainText } from "./matchers/toContaintext";
 import { CustomerForm } from "../src/CustomerForm";
@@ -25,7 +27,7 @@ describe("CustomerForm", () => {
   it("renders the first name field as a text box", () => {
     render(<CustomerForm original={blankCustomer} />);
     // const field = form().elements.firstName;
-    const fieldFN = field("firstName");
+    const fieldFN = fieldOnForm("firstName");
 
     expect(fieldFN).not.toBeNull();
     expect(fieldFN.tagName).toEqual("INPUT");
@@ -37,7 +39,7 @@ describe("CustomerForm", () => {
 
     render(<CustomerForm original={customer} />);
 
-    expect(field("firstName").value).toEqual("Ashley");
+    expect(fieldOnForm("firstName").value).toEqual("Ashley");
   });
 
   it("renders 'First name' as the first name label content", () => {
@@ -50,29 +52,24 @@ describe("CustomerForm", () => {
 
   it("renders a submit button", () => {
     render(<CustomerForm original={blankCustomer} />);
-
-    const button = element("button[type=submit]");
-
-    expect(button).not.toBeNull();
+    expect(submitButton()).not.toBeNull();
   });
 
   it("saves existing first name when submitted", () => {
     expect.hasAssertions();
 
     const customer = { firstName: "Ashley" };
-
     render(
       <CustomerForm
         original={customer}
         onSubmit={(firstName) => {
-          event.preventDefault();
-
+          // event.preventDefault();
           expect(firstName).toEqual("Ashley");
         }}
       />
     );
 
-    const button = element("button[type=submit]");
+    const button = element("input[type=submit]");
     click(button);
   });
 
@@ -82,5 +79,22 @@ describe("CustomerForm", () => {
     const event = submit(form());
 
     expect(event.defaultPrevented).toBe(true);
+  });
+
+  it("saves new first name when submitted", () => {
+    expect.hasAssertions();
+    const customer = { firstName: "Ashley" };
+
+    render(
+      <CustomerForm
+        original={customer}
+        onSubmit={(firstName) => {
+          console.log("onSubmit: ", firstName);
+          expect(firstName).toEqual("Jamie");
+        }}
+      />
+    );
+    change(fieldOnForm("firstName"), "Jamie");
+    click(submitButton());
   });
 });

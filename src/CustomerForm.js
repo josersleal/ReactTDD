@@ -16,7 +16,7 @@ export const CustomerForm = ({ original, onSubmit }) => {
     event.preventDefault();
     // console.log("original.firstName: ", original.firstName);
     // console.log("customer.firstName: ", customer.firstName);
-    onSubmit(customer.firstName);
+    onSubmit(customer);
   }
 
   return (

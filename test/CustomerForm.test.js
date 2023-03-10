@@ -62,7 +62,7 @@ describe("CustomerForm", () => {
     render(
       <CustomerForm
         original={customer}
-        onSubmit={(firstName) => {
+        onSubmit={({ firstName }) => {
           // event.preventDefault();
           expect(firstName).toEqual("Ashley");
         }}
@@ -88,7 +88,7 @@ describe("CustomerForm", () => {
     render(
       <CustomerForm
         original={customer}
-        onSubmit={(firstName) => {
+        onSubmit={({ firstName }) => {
           console.log("onSubmit: ", firstName);
           expect(firstName).toEqual("Jamie");
         }}

@@ -43,15 +43,17 @@ describe("CustomerForm", () => {
 
   const itIncludesTheExistingValue = (fieldName, existingValue) => {
     it("renders value in text box", () => {
-      const customer = { firstName: existingValue };
-
+      const customer = { [fieldName]: existingValue };
       render(<CustomerForm original={customer} />);
 
-      expect(fieldOnForm(fieldName).value).toEqual(existingValue);
+      const fieldValue = fieldOnForm(fieldName).value;
+
+      expect(fieldValue).toEqual(existingValue);
     });
   };
 
   const itRendersALabel = (fieldForName, content) => {
+    console.log(fieldForName);
     it(`renders ${content} as the label ${fieldForName} content`, () => {
       render(<CustomerForm original={blankCustomer} />);
 
@@ -87,7 +89,7 @@ describe("CustomerForm", () => {
   };
 
   const itSubmitsNewValue = (fieldName, fieldValue) => {
-    it("saves new value when submitted", () => {
+    it("Then saves new value when submitted", () => {
       expect.hasAssertions();
       const customer = { [fieldName]: "oldValue" };
 
@@ -109,6 +111,24 @@ describe("CustomerForm", () => {
     itAssignsAnIdThatMatchesTheLabelId("firstName");
     itSubmitsExistingValue("firstName", "Ashley");
     itSubmitsNewValue("firstName", "newValue");
+  });
+
+  describe("last Name Field", () => {
+    itRendersAsATextBox("lastName");
+    itIncludesTheExistingValue("lastName", "Smith");
+    itRendersALabel("lastName", "Last Name");
+    itAssignsAnIdThatMatchesTheLabelId("lastName");
+    itSubmitsExistingValue("lastName", "Smith");
+    itSubmitsNewValue("lastName", "newValue");
+  });
+
+  describe("Given a phone number Field", () => {
+    itRendersAsATextBox("phoneNumber");
+    itIncludesTheExistingValue("phoneNumber", "01234");
+    itRendersALabel("phoneNumber", "Phone Number");
+    itAssignsAnIdThatMatchesTheLabelId("phoneNumber");
+    itSubmitsExistingValue("phoneNumber", "12345");
+    itSubmitsNewValue("phoneNumber", "99999");
   });
 
   it("prevents the default action when submitting the form", () => {

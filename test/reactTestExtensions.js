@@ -34,6 +34,9 @@ export const submit = (formElement) => {
   return event;
 };
 
+export const labelFor = (fieldForName) => element(`label[for=${fieldForName}]`);
+
+
 export const element = (selector) => document.querySelector(selector);
 export const elements = (selector) =>
   Array.from(document.querySelectorAll(selector));

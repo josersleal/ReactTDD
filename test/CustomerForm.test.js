@@ -9,6 +9,7 @@ import {
   submit,
   submitButton,
   change,
+  labelFor,
 } from "./reactTestExtensions";
 import { toContainText } from "./matchers/toContaintext";
 import { CustomerForm } from "../src/CustomerForm";
@@ -57,7 +58,7 @@ describe("CustomerForm", () => {
     it(`renders ${content} as the label ${fieldForName} content`, () => {
       render(<CustomerForm original={blankCustomer} />);
 
-      const label = element(`label[for=${fieldForName}]`);
+      const label = labelFor(fieldForName);
 
       expect(label).toContainText(content);
     });

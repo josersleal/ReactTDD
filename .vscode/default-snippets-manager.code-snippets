@@ -1,0 +1,16 @@
+{
+	"jm": {
+		"prefix": "jm",
+		"description": "jm",
+		"scope": "javascript",
+		"body": [
+			"import { matcherHint, printExpected } from \"jest-matcher-utils\";",
+			"",
+			"export const toBeInputFieldOfType = (element, expectedType) => {",
+			"  const pass = element?.tagName === \"INPUT\" && element.type === expectedType;",
+			"",
+			"  return { pass };",
+			"};"
+		]
+	}
+}

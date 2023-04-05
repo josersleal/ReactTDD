@@ -3,18 +3,7 @@ import React, { useState } from "react";
 export const CustomerForm = ({ original, onSubmit }) => {
   const [customer, setCustomer] = useState(original);
 
-  /* const handleChangeFirstName = ({ target }) => {
-    setCustomer((customer) => ({
-      ...customer,
-      firstName: target.value,
-    }));
-  }; */
-
   const handleChange = ({ target }) => {
-    console.log("@handleChange original", original);
-
-    console.log("@handleChange target.name", target.name);
-    console.log("@handleChange target.value", target.value);
     setCustomer((customer) => ({
       ...customer,
       [target.name]: target.value,

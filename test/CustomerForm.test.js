@@ -54,7 +54,6 @@ describe("CustomerForm", () => {
   };
 
   const itRendersALabel = (fieldForName, content) => {
-    console.log(fieldForName);
     it(`renders ${content} as the label ${fieldForName} content`, () => {
       render(<CustomerForm original={blankCustomer} />);
 
